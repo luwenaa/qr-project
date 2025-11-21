@@ -4,6 +4,60 @@
 
 
 {% block content %}
+    <div class="main-body w-full h-full p-10">
+
+        <!-- 2-column layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <!-- left: form -->
+            <form class="w-full max-w-md flex flex-col border rounded-lg border-indigo-100
+            bg-indigo-50 shadow-lg p-4 mt-6">
+
+                <label class="ml-1 text-zinc-600 font-medium">enter your text :</label>
+
+                <input
+                        type="text"
+                        placeholder="please enter..."
+                        class="border border-gray-300 rounded-lg p-2 mt-1
+                       focus:outline-none focus:ring-2 focus:ring-blue-200 shadow-sm"
+                />
+
+                <button
+                        class="border rounded-lg border-sky-100 bg-sky-50 shadow-sm p-2 mt-6
+                       w-40 justify-center text-zinc-700 hover:bg-sky-100 transition">
+                    generate qr
+                </button>
+            </form>
+
+            <!-- right: qr output placeholder -->
+            <div id="qr-output"
+                 class="mt-6 max-w-sm min-h-[200px] flex items-center justify-center
+                    border border-gray-200 rounded-lg bg-white shadow-sm">
+                <!--  inject the qr here later -->
+                <p class="text-gray-400 italic">your qr will appear here</p>
+            </div>
+
+            <p class="italic ml-3 text-gray-500 underline underline-offset-8">
+                <a href="{{ url_for('data')}}" class="hover:text-[#0000FF]">⟶ data information</a></p>
+
+                    <div class="mt-10 flex gap-4 ml-6">
+                        <button class="px-4 py-2 rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-200 shadow">
+                            download png
+                        </button>
+
+                        <button class="px-4 py-2 rounded-lg bg-indigo-100 hover:bg-indigo-200 border border-indigo-200 shadow">
+                            download svg
+                        </button>
+                    </div>
+            <!--  make a tutoria card and assert at the button! -->
+
+                </div>
+
+        </div>
+
+
+
+
     {%include "modal.html"%}
 
 

@@ -29,13 +29,32 @@
             padding: 0 6px;
         }
 
-        .nav-list li:not(:last-child)::after {
+        .nav-list > li:not(:last-child)::after {
             content: "|";
             position: absolute;
             right: -20px;
             top: 0;
             color: #aaa;
         }
+        #dropdown-menu.open {
+            opacity: 1;
+            scale: 1;
+            pointer-events: auto;
+            transform: scaleY(1);
+        }
+
+        #info-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        #info-toggle:hover span:first-child {
+            color: #a855f7; /* purple-500 */
+        }
+
+        #info-toggle:hover #info-arrow {
+            color: #a855f7;
+        }
+
 
         .qr-card::after {
             content: "";
@@ -89,26 +108,56 @@
 
     <!-- navbar -->
     <div class="nav">
-        <section class="max-w-md mx-auto mt-5 p-3 flex justify-center
-                        border rounded-full shadow-sm bg-stone-50 relative">
+        <section
+                class="max-w-md mx-auto mt-5 p-3 flex justify-center
+           border rounded-full shadow-sm bg-stone-50 relative">
 
             <ul class="flex justify-around w-full text-zinc-600 nav-list">
+
                 <li><a href="{{ url_for('index')}}" class="hover:text-purple-500">home</a></li>
                 <li><a href="{{ url_for('qr_space')}}" class="hover:text-purple-500">qr code</a></li>
                 <li><a href="{{ url_for('tutorial')}}" class="hover:text-purple-500">tutorial</a></li>
 
-                <li class="flex items-center relative group">
-                    <a href="#">
-                        <span class="transition-all duration-200 group-hover:text-purple-500">info</span>
-                        <span class="text-zinc-700 font-medium absolute bottom-1.5 ml-2
-                                        transition-transform duration-200 group-hover:rotate-180 group-hover:text-purple-500">
-                            ⌄
-                        </span>
-                    </a>
-                </li>
-            </ul>
+                <!-- dropdown group -->
+                <li class="relative" id="info-wrapper">
 
+                    <!-- trigger -->
+                    <button id="info-toggle" class="flex items-center gap-1 cursor-pointer select-none">
+                        <span class="transition-all duration-200">info</span>
+
+                        <span id="info-arrow"
+                              class="text-zinc-700 font-medium absolute bottom-1.5 -right-2 transition-transform duration-200">
+            ⌄
+        </span>
+                    </button>
+
+                    <!-- dropdown -->
+                    <div id="dropdown-menu"
+                         class="absolute top-full -right-6 mt-4 w-sm p-2 bg-stone-50 border shadow rounded-xl
+                opacity-0 scale-y-0 origin-top transition-all duration-200 pointer-events-none">
+
+                        <ul class="flex flex-col text-zinc-700">
+
+                            <li class="hover:bg-stone-200 px-4 py-2 rounded-lg">
+                                <a href="{{ url_for('data') }}">data</a>
+                            </li>
+
+                            <li class="hover:bg-stone-200 px-4 py-2 rounded-lg">
+                                <a href="{{ url_for('about') }}">about us</a>
+                            </li>
+
+                            <li class="hover:bg-stone-200 px-4 py-2 rounded-lg">
+                                <a href="{{ url_for('feedback') }}">feedback</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </li>
+
+            </ul>
         </section>
+
     </div>
 
     <!-- header -->
