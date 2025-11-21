@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>qr generator</title>
+    <link rel="icon" href="">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <style>
+        #main-content, #modal, #modal * {
+            caret-color: transparent;
+        }
+
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-list li {
+            position: relative;
+            padding: 0 12px;
+        }
+
+        .nav-list li:not(:last-child)::after {
+            content: "|";
+            position: absolute;
+            right: -20px;
+            top: 0;
+            color: #aaa;
+        }
+
+
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        (function() {
+            const source = new EventSource('/_reload');
+
+            source.onmessage = function (e) {
+                if (e.data === "reload") {
+                    location.reload();
+                }
+            };
+        })();
+    </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+
+</head>
+<body>
+
+<div class="home-body font-sans">
+    <div id="main-content" class="">
+        <div class="nav">
+            <section class="max-w-sm mx-auto mt-5 p-3 flex justify-center
+        border rounded-full shadow-sm bg-stone-50 relative">
+
+                <ul class="flex justify-around w-full text-zinc-600 nav-list">
+                    <li><a id="qr-home" href="index.html" class="hover:text-purple-500">qr code</a></li>
+                    <li><a id="qr-tut" href="tutorial.html" class="hover:text-purple-500">tutorial</a></li>
+                    <li class="flex items-center gap-1 relative pr-4 group">
+                        <a id="qr-info" href="" class="">
+                            <span class="transition-all duration-200 group-hover:text-purple-500
+                            group-hover:-translate-y  -0.5 group-hover:scale-110"> info </span>
+                            <span class="text-zinc-700 font-medium absolute bottom-1.5 ml-3
+                            transition-transform duration-200 group-hover:rotate-180 group-hover:text-purple-500">⌄</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </section>
+        </div>
+
+
+        <div class="flex justify-center mt-[3%] items-center gap-2">
+            <img class="object-contain flex-shrink-0 w-[10%]" src="../static/images/theqrspace-icn1.png" alt="">
+            <header class="font-medium text-4xl"> the <span class="">qr</span> space</header>
+        </div>
+        <p class="italic text-gray-400 text-center"> a simple secure tool to generate your text into a scannable qr code. </p>
+
+
+
+
+        <!-- main generator layout goes here -->
+    </div>
+
+    <div id="modal" class="fixed inset-0 bg-black/5 backdrop-blur-sm flex justify-center text-sm items-center w-full h-full">
+        <div class="modal-inner max-w-2xl w-[80%] max-h-[80vh] p-10 border border-gray-100 rounded-3xl bg-stone-100 shadow-xl overflow-hidden">
+            <h2 class="text-2xl mb-4 text-gray-800 text-center font-medium">
+                <span class="underline underline-offset-4 decoration-indigo-300">data</span> protection & user consent
+            </h2>
+
+            <div class="scroll-box overflow-y-auto max-h-[40em] bg-white/90 border border-gray-300 rounded-lg p-6 mx-auto w-[90%]" id="modal-content">
+                <h2 class="text-center underline underline-offset-8 italic pb-3"> please read our data policies and information!</h2>
+
+                <div class="bg-amber-50 p-6 mt-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                    <img class="mt-5 w-24 h-24  object-contain flex-shrink-0" alt="" src="../static/images/light-bulb.png" />
+                    <div class="flex flex-col">
+                    <h3 class=" mr-20 text-lg mb-2">purpose</h3>
+                    <p class="leading-relaxed"> the purpose of this tool is to process text input locally, and generate a qr code.
+                        this tool follows guidelines to ensure data integrity.
+                    </p>
+                </div>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                    <img class="mt-5 w-24 h-24  object-contain flex-shrink-0" alt="" src="../static/images/malware.png" />
+                    <div class="flex flex-col">
+                        <h3 class=" mr-20 text-lg mb-2">safety warning</h3>
+                        <p class="leading-relaxed">  this tool processes only the text you provide.</p>
+
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
+                            <li>do not enter sensitive personal data.</li>
+                            <li>do not share qr codes containing private information.</li>
+                            <li>ensure inputs complies with university data protection policies</li>
+                            <li>qr outputs are <b>not</b> encrypted, anyone who scans them can read the data.</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                    <img class="mt-5 w-24 h-24  object-contain flex-shrink-0" alt="" src="../static/images/computer.png"/>
+                    <div class="flex flex-col">
+                     <h3 class="mr-20 text-lg mb-2">data storage</h3>
+                    <p>
+                        this tool processes data <span class="font-bold"> locally </span> in your browser.<br>
+                        <span class="text-md">⟶ no text is uploaded, stored, logged, or transmitted to any server.</span><br>
+                        <span>⟶ once you close the page, your input is automatically cleared.</span><br>
+                    </p>
+                    </div>
+                </div>
+
+
+                <div class="bg-green-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                <img class="mt-5 w-24 h-24  object-contain flex-shrink-0" alt="" src="../static/images/safety_padlock.png"/>
+                    <div class="flex flex-col">
+                        <h3 class=" mr-20 text-lg mb-2">keeping safe</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm">
+                            <li>keep your generated qr images stored securely on your device.</li>
+                            <li>avoid posting qr codes publicly unless the encoded text is safe for anyone to read.</li>
+                            <li>delete older qr files if they are no longer needed.</li>
+                            <li>only use this tool for appropriate academic or personal purposes.</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div  class="bg-pink-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                    <img class="mt-5 w-24 h-24  object-contain flex-shrink-0" alt="" src="../static/images/chat-bubble.png"/>
+                    <div class="flex flex-col">
+                    <h3 class="mr-20 text-lg mb-2"> resources</h3>
+                        <ul class="text-sm">
+                            <p class=" text-sm text-gray-600"><i>know your rights: </i></p>
+                            <li> ⟶ <a class="underline text-[#0000FF] text-sm" href="https://www.gov.uk/data-protection"> uk gdpr</a></li>
+                            <li> ⟶ <a class="underline text-[#0000FF] text-sm" href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted"> data protection act</a></li>
+                            <p class="mt-2 text-sm text-gray-600"><i>learn more: </i></p>
+                            <li> ⟶ <a class="underline text-[#0000FF] text-sm" href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online"> nsc online safety tips</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="text-sm text-gray-500"> <i>please ensure you have read the above information before proceeding.</i></p>
+
+            </div>
+
+            <a class="flex justify-center mt-2 underline text-[#0000FF]"
+               href="data.html"
+               id="info-button">
+                learn more about data protection
+            </a>
+
+            <div class="modal-agree flex items-center gap-2 mt-4 justify-center">
+                <input type="checkbox" id="modal-agree" disabled>
+                <label for="modal-agree"> i understand and agree!</label>
+            </div>
+            <p id="scroll-error" class="text-red-700 text-sm mb-2 ml-10 pb-2 text-center hidden">
+                * please scroll down to continue.
+            </p>
+
+            <p id="error-msg" class="text-red-700 text-sm mb-2 ml-10 pb-2 text-center hidden">
+                * please scroll down and <span class="underline">tick the box</span> to continue.
+            </p>
+            <div class="flex justify-center items-center w-full">
+                <button id="close-modal"
+                        class="btn-disabled items-center border bg-violet-100 border-violet-200 rounded-lg mt-3 text-center h-[2.5em] w-[25%]">
+                    continue
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

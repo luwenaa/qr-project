@@ -1,0 +1,27 @@
+
+modal:
+the modal will have 3 rules:
+1. user must scroll to bottom of the text → checkbox becomes enabled
+---> until they scroll to the end, the checkbox is disabled.
+
+2. user must tick checkbox → button becomes enabled
+---> if checkbox isn’t ticked, button stays disabled.
+
+3. if they try to click button without checkbox → show error message
+---> “please confirm you understand before continuing”.
+
+[ scrollable div with the long text ]
+[ checkbox (disabled at first) ]
+[ continue button (enabled when checkbox is too) ]
+[ hidden error msg (appears if button clicked without checkbox) ]
+
+#BDCFFF
+
+#B8COFF
+
+#C8B6FE
+
+#E7C5FF
+
+#FED5FF
+
