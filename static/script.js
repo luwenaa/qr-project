@@ -14,23 +14,24 @@ let hasScrolledToBottom = false;
 /* ---------------- show modal only if version changed ------------------- */
 
 if (savedVersion === MODAL_VERSION) {
-    if (popup) popup.remove();
+    popup?.remove();
 }
+
 
 /* ---------------- helper ------------------- */
 
 function updateButtonState() {
-    if (hasScrolledToBottom && modal_check.checked) {
-        popup_btn.classList.remove("btn-disabled");
-    } else {
-        popup_btn.classList.add("btn-disabled");
-    }
+    popup_btn.disabled = !(hasScrolledToBottom && modal_check.checked);
+    popup_btn.classList.toggle("btn-disabled", popup_btn.disabled);
 }
 
 /* ---------------- scrolling logic ------------------- */
 
 scrollBox.addEventListener("scroll", () => {
-    if (scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight) {
+    const atBottom =
+        scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight - 10;
+
+    if (atBottom) {
         hasScrolledToBottom = true;
         scrollError.classList.add("hidden");
         modal_check.disabled = false;
@@ -50,9 +51,7 @@ modal_check.addEventListener("click", (e) => {
 /* ---------------- checkbox change ------------------- */
 
 modal_check.addEventListener("change", () => {
-    if (modal_check.checked) {
-        errorMsg.style.display = "none";
-    }
+    if (modal_check.checked) errorMsg.style.display = "none";
     updateButtonState();
 });
 
@@ -70,15 +69,14 @@ popup_btn.addEventListener("click", (e) => {
         return;
     }
 
-    // save version, so modal won't show again
     localStorage.setItem("modalAcceptedVersion", MODAL_VERSION);
-
     popup.remove();
 });
 
-// dev shortcut: ctrl + shift + r → reset modal consent
+/* ---------------- dev reset: ctrl + shift + r ------------------- */
+
 document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "r") {
+    if (e.ctrlKey && e.shiftKey && e.key === "r") {
         localStorage.removeItem("modalAcceptedVersion");
         location.reload();
     }

@@ -5,9 +5,31 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/qrgenerator')
+def qr_space():
+    return render_template('qr_space.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/tutorial')
+def tutorial():
+    return render_template('tutorial.html')
+
+
+@app.route('/data')
+def data():
+    return render_template('data.html')
+
 
 @app.route('/_reload')
 def reload():
@@ -20,7 +42,9 @@ def reload():
             if current_mtime > last_mtime:
                 last_mtime = current_mtime
                 yield "data: reload\n\n"
+
     return Response(stream(), mimetype='text/event-stream')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
