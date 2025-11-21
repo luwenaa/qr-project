@@ -1,83 +1,87 @@
-const MODAL_VERSION = "1.0";
-const savedVersion = localStorage.getItem("modalAcceptedVersion");
+const modal_version = "1.0";
+const saved_version = localStorage.getItem("modal_accepted_version");
 
 const popup = document.getElementById("modal");
 const modal_check = document.getElementById("modal-agree");
 const popup_btn = document.getElementById("close-modal");
-const scrollBox = document.getElementById("modal-content");
+const scroll_box = document.getElementById("modal-content");
 
-const errorMsg = document.getElementById("error-msg");
-const scrollError = document.getElementById("scroll-error");
+const error_msg = document.getElementById("error-msg");
+const scroll_error = document.getElementById("scroll-error");
 
-let hasScrolledToBottom = false;
+let scrolled_to_bottom = false;
 
-/* ---------------- show modal only if version changed ------------------- */
+/* ---------------- modal should show only if version changed ---------------- */
 
-if (savedVersion === MODAL_VERSION) {
-    popup?.remove();
+if (saved_version === modal_version) {
+    if (popup) popup.remove();
 }
 
+/* ---------------- helper to lock / unlock continue button ---------------- */
 
-/* ---------------- helper ------------------- */
-
-function updateButtonState() {
-    popup_btn.disabled = !(hasScrolledToBottom && modal_check.checked);
-    popup_btn.classList.toggle("btn-disabled", popup_btn.disabled);
+function update_button() {
+    const unlocked = scrolled_to_bottom;
+    popup_btn.disabled = !unlocked;
+    popup_btn.classList.toggle("btn-disabled", !unlocked);
 }
 
-/* ---------------- scrolling logic ------------------- */
+/* ---------------- scrolling logic ---------------- */
 
-scrollBox.addEventListener("scroll", () => {
-    const atBottom =
-        scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight - 10;
+if (scroll_box) {
+    scroll_box.addEventListener("scroll", () => {
+        const at_bottom =
+            scroll_box.scrollTop + scroll_box.clientHeight >= scroll_box.scrollHeight - 5;
 
-    if (atBottom) {
-        hasScrolledToBottom = true;
-        scrollError.classList.add("hidden");
-        modal_check.disabled = false;
-        updateButtonState();
+        if (at_bottom) {
+            scrolled_to_bottom = true;
+            scroll_error.classList.add("hidden");
+            modal_check.disabled = false;
+            update_button();
+        }
+    });
+}
+
+/* ---------------- checkbox click ---------------- */
+
+modal_check?.addEventListener("click", (e) => {
+    if (!scrolled_to_bottom) {
+        e.preventDefault();
+        scroll_error.classList.remove("hidden");
     }
 });
 
-/* ---------------- checkbox click ------------------- */
+/* ---------------- checkbox change ---------------- */
 
-modal_check.addEventListener("click", (e) => {
-    if (!hasScrolledToBottom) {
-        e.preventDefault();
-        scrollError.classList.remove("hidden");
-    }
+modal_check?.addEventListener("change", () => {
+    if (modal_check.checked)
+        error_msg.style.display = "none";
+    update_button();
 });
 
-/* ---------------- checkbox change ------------------- */
+/* ---------------- continue button ---------------- */
 
-modal_check.addEventListener("change", () => {
-    if (modal_check.checked) errorMsg.style.display = "none";
-    updateButtonState();
-});
-
-/* ---------------- continue button ------------------- */
-
-popup_btn.addEventListener("click", (e) => {
-    if (!hasScrolledToBottom) {
+popup_btn?.addEventListener("click", (e) => {
+    if (!scrolled_to_bottom) {
         e.preventDefault();
-        scrollError.classList.remove("hidden");
+        scroll_error.classList.remove("hidden");
         return;
     }
 
     if (!modal_check.checked) {
-        errorMsg.style.display = "block";
+        e.preventDefault();
+        error_msg.style.display = "block";
         return;
     }
 
-    localStorage.setItem("modalAcceptedVersion", MODAL_VERSION);
+    localStorage.setItem("modal_accepted_version", modal_version);
     popup.remove();
 });
 
-/* ---------------- dev reset: ctrl + shift + r ------------------- */
+/* ---------------- dev reset: ctrl + shift + r ---------------- */
 
 document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key === "r") {
-        localStorage.removeItem("modalAcceptedVersion");
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "r") {
+        localStorage.removeItem("modal_accepted_version");
         location.reload();
     }
 });

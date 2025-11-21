@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/theqrspace-icn1.png') }}">
+
+    <!-- fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    </style>
+
+    <!-- global styles -->
+    <style>
+        * {
+            caret-color: transparent;
+        }
+
+
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-list li {
+            position: relative;
+            padding: 0 6px;
+        }
+
+        .nav-list li:not(:last-child)::after {
+            content: "|";
+            position: absolute;
+            right: -20px;
+            top: 0;
+            color: #aaa;
+        }
+
+        .qr-card::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 20px;
+            background: #f9edff;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+            opacity: 0;
+        }
+
+        .qr-card:hover::after {
+            opacity: 1;
+            bottom: -12px;
+        }
+    </style>
+
+    <!-- tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <!-- live reload -->
+    <script>
+        (function () {
+            const source = new EventSource('/_reload');
+            source.onmessage = (e) => {
+                if (e.data === "reload") location.reload();
+            };
+        })();
+    </script>
+
+</head>
+
+<body>
+
+<div id="base">
+
+
+    <!-- navbar -->
+    <div class="nav">
+        <section class="max-w-md mx-auto mt-5 p-3 flex justify-center
+                        border rounded-full shadow-sm bg-stone-50 relative">
+
+            <ul class="flex justify-around w-full text-zinc-600 nav-list">
+                <li><a href="{{ url_for('index')}}" class="hover:text-purple-500">home</a></li>
+                <li><a href="{{ url_for('qr_space')}}" class="hover:text-purple-500">qr code</a></li>
+                <li><a href="{{ url_for('tutorial')}}" class="hover:text-purple-500">tutorial</a></li>
+
+                <li class="flex items-center relative group">
+                    <a href="#">
+                        <span class="transition-all duration-200 group-hover:text-purple-500">info</span>
+                        <span class="text-zinc-700 font-medium absolute bottom-1.5 ml-2
+                                        transition-transform duration-200 group-hover:rotate-180 group-hover:text-purple-500">
+                            ⌄
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+        </section>
+    </div>
+
+    <!-- header -->
+    <div class="flex justify-center mt-[3%] items-center gap-2">
+        <img class="object-contain flex-shrink-0 w-[10%]"
+             src="{{ url_for('static', filename='images/theqrspace-icn1.png') }}" alt="">
+        <header class="font-medium text-4xl">the <span>qr</span> space</header>
+    </div>
+
+    <p class="italic text-gray-400 text-center">
+        a simple secure tool to generate your text into a scannable qr code.
+    </p>
+
+    <!-- page content -->
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
