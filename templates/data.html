@@ -1,10 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}data{% endblock %}
+{% block content %}
+
+    <style>
+    h3 {
+        font-size: x-large; !important;
+    }
+    </style>
+    <div class="home flex justify-center items-center flex-col mb-10">
+
+        <h2 class="text-center font-medium text-3xl italic pt-20">
+            <span class="underline underline-offset-4 decoration-violet-400">data</span>
+            policies and information
+        </h2>
+
+        <div class="bg-zinc-50 space-y-8 p-6 border border-dashed border-4 border-gray-300 rounded-lg mt-5
+                max-w-[60%] w-full shadow-lg inset-0"
+             id="modal-content">
+
+            <!-- GRID START -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- PURPOSE -->
+                <div class="bg-amber-50 p-6 rounded-xl shadow-lg flex flex-col gap-4 outline
+                    outline-dashed outline-amber-200 rounded">
+                    <div class="flex items-center gap-4">
+
+                        <!-- glass icon -->
+                        <div class="relative w-20 h-20 flex items-center justify-center">
+                            <div class="absolute inset-0 rounded-2xl border-2"></div>
+                            <div class="absolute inset-0 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/50
+                        shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                            <img src="../static/images/light-bulb.png"
+                                 class="relative w-12 h-12 object-contain z-[2] drop-shadow">
+                        </div>
+
+                        <h3> purpose</h3>
+                    </div>
+
+                    <p>
+                        the purpose of this tool is to process text input locally, and generate a qr code.
+                        this tool follows guidelines to ensure data integrity.
+                    </p>
+                </div>
+
+
+                <!-- SAFETY -->
+                <div class="bg-red-50 p-6 rounded-xl shadow-lg flex flex-col gap-4 outline outline-dashed outline-red-200
+                                 rounded">
+                    <div class="flex items-center gap-4">
+                        <div class="relative w-20 h-20 flex items-center justify-center">
+                            <div class="absolute inset-0 rounded-2xl border-2"></div>
+                            <div class="absolute inset-0 rounded-2xl bg-white/40 backdrop-blur-xl
+                            border border-white/50 shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                            <img src="../static/images/malware.png"
+                                 class="relative w-12 h-12 object-contain z-[2] drop-shadow">
+                        </div>
+
+                        <h3 class="">safety warning</h3>
+                    </div>
+
+                    <ul class="list-disc pl-6 space-y-2 text-zinc-700 text-md">
+                        <li>do not enter sensitive personal data.</li>
+                        <li>do not share qr codes containing private information.</li>
+                        <li>ensure inputs comply with university data protection policies.</li>
+                        <li>qr outputs are <b>not</b> encrypted.</li>
+                    </ul>
+                </div>
+
+                <!-- DATA STORAGE -->
+                <div class="bg-blue-50 p-6 rounded-xl shadow-lg outline outline-dashed outline-blue-200
+                                 rounded flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="relative w-20 h-20 flex items-center justify-center">
+                            <div class="absolute inset-0 rounded-2xl border-2"></div>
+                            <div class="absolute inset-0 rounded-2xl bg-white/40 backdrop-blur-xl
+                border border-white/50 shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                            <img src="../static/images/computer.png"
+                                 class="relative w-12 h-12 object-contain z-[2] drop-shadow">
+                        </div>
+                        <h3 class="">data storage</h3>
+                    </div>
+
+                    <p class="text-zinc-700">
+                        this tool processes data <span class="font-semibold">locally</span> in your browser.
+                    </p>
+
+                    <div class="bg-blue-100/50 rounded-xl p-3 grid grid-cols-1 gap-4">
+                        <div class="flex items-start gap-3">
+                            <img src="../static/images/cancel.png" class="w-10 h-10">
+                            <p class="text-sm">no text is uploaded, stored, logged, or transmitted.</p>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <img src="../static/images/clean.png" class="w-12 h-12">
+                            <p class="text-sm">your input is cleared automatically when you close the page.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KEEPING SAFE -->
+                <div class="bg-green-50 p-6 rounded-xl shadow-lg outline outline-dashed outline-green-200 flex flex-col gap-4 ">
+                    <div class="flex items-center gap-4">
+                        <div class="relative w-20 h-20 flex items-center justify-center">
+                            <div class="absolute inset-0 rounded-2xl border-2"></div>
+                            <div class="absolute inset-0 rounded-2xl bg-white/40 backdrop-blur-xl
+                border border-white/50 shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                            <img src="../static/images/safety_padlock.png"
+                                 class="relative w-12 h-12 object-contain z-[2] drop-shadow">
+                        </div>
+
+                        <h3 class="">keeping safe</h3>
+                    </div>
+
+                    <ul class="list-disc pl-6 space-y-2 text-zinc-700 text-md">
+                        <li>store your qr images securely.</li>
+                        <li>avoid posting qr codes publicly unless safe.</li>
+                        <li>delete old qr files when no longer needed.</li>
+                        <li>use this tool only for appropriate purposes.</li>
+                    </ul>
+                </div>
+
+                <!-- RESOURCES -->
+                <div class="bg-pink-50 p-6 rounded-xl shadow-lg outline outline-dashed outline-pink-200 flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="relative w-20 h-20 flex items-center justify-center">
+                            <div class="absolute inset-0 rounded-2xl border-2"></div>
+                            <div class="absolute inset-0 rounded-2xl bg-white/40 backdrop-blur-xl
+                border border-white/50 shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                            <img src="../static/images/chat-bubble.png"
+                                 class="relative w-12 h-12 object-contain z-[2] drop-shadow">
+                        </div>
+
+                        <h3 class="">resources</h3>
+                    </div>
+
+                    <ul class="text-sm space-y-1">
+                        <p class="text-gray-600 italic text-sm">know your rights:</p>
+                        <li>⟶ <a href="https://www.gov.uk/data-protection" class="underline text-blue-600">uk gdpr</a></li>
+                        <li>⟶ <a href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted" class="underline text-blue-600">data protection act</a></li>
+
+                        <p class="text-gray-600 italic text-sm mt-2">learn more:</p>
+                        <li>⟶ <a href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online" class="underline text-blue-600">nsc safety tips</a></li>
+                    </ul>
+                </div>
+
+            <div class="p-6 rounded-xl shadow-lg outline outline-dashed outline-purple-200 flex flex-col gap-4 bg-[#faf7ff] border border-[#f0e6ff]">
+                <div class="flex items-center gap-4">
+                    <div class="relative w-20 h-20 flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-2xl border-2"></div>
+                        <div class="absolute inset-0 rounded-2xl bg-white/40 backdrop-blur-xl
+                border border-white/50 shadow-[0_4px_12px_rgba(0,0,0,0.1)]"></div>
+                        <img src="../static/images/help-desk.png"
+                             class="relative w-12 h-12 object-contain z-[2] drop-shadow">
+                    </div>
+
+                    <h3 class> contact</h3>
+                </div>
+
+                <p class="text-zinc-700">
+                    <span class="text-gray-600 italic text-sm m-2 p-2">need help or feedback?</span> <br>
+                    ⟶ visit the <a href="{{ url_for('about') }}" class="underline text-blue-700">about us</a>
+                    or <a href="{{ url_for('feedback') }}" class="underline text-blue-700">feedback</a> page.
+                </p>
+
+            </div>
+            </div>
+            <!-- GRID END -->
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
