@@ -4,6 +4,13 @@
 
 
 {% block content %}
+
+    <style>
+        #qr-text input {
+            caret-color: black !important;
+        }
+    </style>
+
     <div class="main-body w-full h-full p-10">
 
         <!-- 2-column layout -->
@@ -11,9 +18,9 @@
 
             <!-- left: form -->
             <form class="w-full max-w-md flex flex-col border rounded-lg border-indigo-100
-            bg-indigo-50 shadow-lg p-4 mt-6">
+            bg-indigo-50 shadow-lg p-4 mt-6" id="qr-text">
 
-                <label class="ml-1 text-zinc-600 font-medium">enter your text :</label>
+                <label class="ml-1 text-zinc-600 font-medium" >enter your text :</label>
 
                 <input
                         type="text"
@@ -50,7 +57,7 @@
                         </button>
                     </div>
             <!--  make a tutoria card and assert at the button! -->
-
+            {%include "qr_tips.html"%}
                 </div>
 
         </div>

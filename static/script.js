@@ -11,6 +11,27 @@ const scroll_error = document.getElementById("scroll-error");
 
 let scrolled_to_bottom = false;
 
+const toggle = document.getElementById("info-toggle");
+const menu = document.getElementById("dropdown-menu");
+const arrow = document.getElementById("info-arrow");
+const wrapper = document.getElementById("info-wrapper");
+
+// toggle open/close
+toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("open");
+    arrow.classList.toggle("open");
+});
+
+// close when clicking outside
+document.addEventListener("click", (e) => {
+    if (!wrapper.contains(e.target)) {
+        menu.classList.remove("open");
+        arrow.classList.remove("open");
+    }
+});
+
+
 /* ---------------- modal should show only if version changed ---------------- */
 
 if (saved_version === modal_version) {

@@ -11,7 +11,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/qrgenerator')
+@app.route('/qr-space')
 def qr_space():
     return render_template('qr_space.html')
 
@@ -29,6 +29,10 @@ def tutorial():
 @app.route('/data')
 def data():
     return render_template('data.html')
+
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
 
 
 @app.route('/_reload')

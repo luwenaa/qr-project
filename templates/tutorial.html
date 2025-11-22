@@ -3,5 +3,221 @@
 {% block title %}tutorial{% endblock %}
 
 
-{% block content %}{% endblock %}
+{% block content %}
+    <div class="flex flex-col w-full justify-center items-center mt-20 mb-10 p-4">
+        <img src="../static/images/qr-code.png" class="relative top-10
+         right-40 -translate-x-3/4 -translate-y-3 h-6 w-6">
+        <h1 class="text-2xl italic font-medium">how to generate a qr code</h1>
+        <p class="text-gray-500 italic mb-8">
+            follow this quick guide to turn your text into a scannable qr code.
+        </p>
 
+        <!-- 1 — #FED5FF (pink) -->
+        <div class="relative p-6 rounded-2xl w-full max-w-2xl mb-6 text-center space-y-3
+        bg-[#FED5FF] border border-[#EABBF0]
+        shadow-md shadow-pink-100">
+
+            <!-- soft glow overlay -->
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
+
+            <!-- actual content wrapper -->
+            <div class="relative z-[2]">
+
+                <!-- step badge -->
+                <div class="absolute -top-9 left-1/2 -translate-x-1/2
+            bg-pink-200 text-white text-sm font-medium
+            px-4 py-1 rounded-full shadow">
+                    step 1
+                </div>
+
+                <h2 class="text-xl font-medium flex justify-center items-center gap-2">
+                    open the generator
+                </h2>
+
+                <p class="text-zinc-700 leading-relaxed">
+                    go to
+                    <a href="{{ url_for('qr_space') }}" class="underline text-blue-600 font-medium">qr code</a>.
+                    you’ll see a simple text box where you can type anything you want to convert.
+                <p class="text-sm italic text-zinc-500 mt-3"> ⟶ note: a data information pop-up may appear,
+                    please read thoroughly , tick 'i agree' and confirm button before proceeding.</p>
+                </p>
+
+            </div>
+        </div>
+
+        <div class="flex justify-center my-6">
+            <div class="w-80 h-[4px] rounded-full opacity-80
+        bg-[repeating-linear-gradient(to_right,_#FBCFE8_0px,_#E7C5FF_8px,_transparent_8px,_transparent_16px)]">
+            </div>
+        </div>
+
+
+        <!-- 2 —  #E7C5FF  -->
+        <div class="relative p-6 rounded-2xl
+            border border-[#DDBDF2] shadow-md shadow-purple-100
+             w-full max-w-2xl mb-6
+             text-center space-y-3 bg-[#E7C5FF]">
+
+            <!-- soft glow overlay -->
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
+
+            <!-- actual content -->
+            <div class="relative z-[2]">
+
+                <!-- step badge -->
+                <div class="absolute -top-9 left-1/2 -translate-x-1/2
+                bg-purple-300 text-white text-sm font-medium
+                px-4 py-1 rounded-full shadow">
+                    step 2
+                </div>
+
+                <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
+                    input your text</h2>
+                <p class="relative text-zinc-700 leading-relaxed">add the text you want to encode! this could be:</p>
+                <ol class="relative list-disc pl-40 text-left text-zinc-700">
+                    <li>a short message</li>
+                    <li>a to-do list</li>
+                    <li>a snippet of information</li>
+                    <li>a study note</li>
+                    <li>anything <span class="italic">safe</span> to be shared</li>
+                </ol>
+                <p class="relative mt-2 text-zinc-800 leading-relaxed italic text-sm">
+                    ⟶ note: <span class="font-semibold">do not enter personal or sensitive data! </span>
+                    — qr codes are <span class="underline">not</span> encrypted.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-6">
+            <div class="w-80 h-[4px] rounded-full opacity-80
+        bg-[repeating-linear-gradient(to_right,_#E7C5FF_0px,_#BDCFFF_8px,_transparent_8px,_transparent_16px)]">
+            </div>
+        </div>
+
+        <!-- 3 — #BDCFFF (blue-lilac) -->
+        <div class="relative p-6 rounded-2xl border border-[#B6C6F2]
+            shadow-md shadow-blue-100
+            w-full max-w-2xl mb-4
+                text-center space-y-3 bg-[#BDCFFF]">
+            <!-- soft glow overlay -->
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
+
+            <!-- actual content -->
+            <div class="relative z-[2]">
+                <!-- step badge -->
+                <div class="absolute -top-9 left-1/2 -translate-x-1/2
+                bg-blue-300 text-white text-sm font-medium
+                px-4 py-1 rounded-full shadow">
+                    step 3
+                </div>
+
+                <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
+                    click “generate qr”
+                </h2>
+                <p class="relative text-zinc-700 leading-relaxed">
+                    once you press the button, your qr code will appear instantly — everything stays in your browser.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-6">
+            <div class="w-80 h-[4px] rounded-full opacity-80
+        bg-[repeating-linear-gradient(to_right,_#BDCFFF_0px,_#c8f4ff_8px,_transparent_8px,_transparent_16px)]">
+            </div>
+        </div>
+
+        <!-- 4 —  neutral cream  -->
+        <div class="relative p-6 border rounded-2xl border-cyan-200
+        shadow-md shadow-cyan-100 w-full max-w-2xl mb-4
+                text-center space-y-3 bg-[#c8f4ff]">
+            <!-- soft glow overlay -->
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
+
+            <!-- actual content -->
+            <div class="relative z-[2]">
+
+                <!-- step badge -->
+                <div class="absolute -top-9 left-1/2 -translate-x-1/2
+                bg-cyan-300 text-white text-sm font-medium
+                px-4 py-1 rounded-full shadow">
+                    step 4
+                </div>
+
+                <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
+                    wait for your qr to generate</h2>
+                <p class="relative text-zinc-700 leading-relaxed">(this should only take a moment!)</p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-6">
+            <div class="w-80 h-[4px] rounded-full opacity-80
+        bg-[repeating-linear-gradient(to_right,_#c8f4ff_0px,_#C5F2D1_8px,_transparent_8px,_transparent_16px)]">
+            </div>
+        </div>
+
+        <!-- 5 —   -->
+        <div class="relative p-6 border rounded-2xl border-[#C5F2D1] shadow-md shadow-green-100 w-full max-w-2xl mb-4
+                text-center space-y-3 bg-[#DFFFE9]">
+            <!-- soft glow overlay -->
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
+
+            <!-- actual content -->
+            <div class="relative z-[2]">
+
+                <!-- step badge -->
+                <div class="absolute -top-9 left-1/2 -translate-x-1/2
+                bg-emerald-200 text-white text-sm font-medium
+                px-4 py-1 rounded-full shadow">
+                    step 5
+                </div>
+
+
+                <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
+                    download your qr</h2>
+                <p class="relative text-zinc-700 leading-relaxed">
+                    below the qr code, choose your preferred download format and save it.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-center my-6">
+            <div class="w-80 h-[4px] rounded-full opacity-80
+        bg-[repeating-linear-gradient(to_right,_#C5F2D1_0px,_#FFEFAB_8px,_transparent_8px,_transparent_16px)]">
+            </div>
+        </div>
+
+        <!-- 6 — NEW soft mint to break up purple/pinks -->
+        <div class="relative p-6 rounded-2xl border border-amber-200 shadow-md shadow-yellow-50 w-full max-w-2xl mb-4
+                text-center space-y-3 bg-amber-100">
+            <!-- soft glow overlay -->
+            <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
+
+            <!-- actual content -->
+            <div class="relative z-[2]">
+
+                <!-- step badge -->
+                <div class="absolute -top-9 left-1/2 -translate-x-1/2
+                bg-yellow-300 text-white text-sm font-medium
+                px-4 py-1 rounded-full shadow">
+                    step 6
+                </div>
+
+
+                <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
+                    test your qr code</h2>
+                <p class="relative text-zinc-700 leading-relaxed">
+                    scan the qr with your phone to make sure everything works correctly.
+                </p>
+            </div>
+        </div>
+        <h2 class="text-zinc-700 mt-6 mb-3 italic">⟢ taa-daa! now you’ve made your own scannable qr code!</h2>
+        <div class="flex justify-center my-6">
+            <div class="w-80 h-[4px] rounded-full opacity-80
+        bg-[repeating-linear-gradient(to_right,_#FAE798_0px,_#FFE88A_8px,_transparent_8px,_transparent_16px)]">
+            </div>
+        </div>
+
+        {%include "qr_tips.html"%}
+
+    </div>
+{% endblock %}
