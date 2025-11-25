@@ -4,18 +4,117 @@
 
 
 {% block content %}
-    <div class="flex flex-col w-full justify-center items-center mt-20 mb-10 p-4">
-        <img src="../static/images/qr-code.png" class="relative top-10
-         right-40 -translate-x-3/4 -translate-y-3 h-6 w-6">
-        <h1 class="text-2xl italic font-medium">how to generate a qr code</h1>
-        <p class="text-gray-500 italic mb-8">
+
+
+    <style>
+
+        #qr-img {
+            width: 1.7rem;
+            height: auto;
+            position: relative;
+            top: 1.7rem;
+            right: 11rem;
+        }
+
+        .tutorial {
+            color:#ad46ff;
+        }
+
+
+        @media (max-width: 640px) {
+            #qr-img {
+                transform: scale(0.35);
+                left: -10.4rem;
+                top: 3rem;
+                position: relative;
+                right: auto;
+            }
+
+            h1 > p {
+                text-align: center;
+            }
+
+            .tut-card {
+                margin-top: 3px;
+            }
+
+            .tut-card h1 {
+                font-size: 1.5rem;
+                padding-left: 2rem;
+            }
+
+            .tut-card p {
+            }
+
+            .note {
+                font-size: 0.7rem !important;
+                padding-top: 4px !important;
+                text-align: left;
+            }
+
+            .tut-card h2 {
+                padding-bottom: 0.3rem;
+            }
+
+            .tut-steps {
+                width: 24rem;
+                padding: 1rem;
+                margin: 0.7rem;
+            }
+            .tut-steps p, .tut-steps ol {
+                font-size: 0.9rem;
+                line-height: 1.2;
+                margin-bottom: 2%;
+            }
+
+            #card-arw {
+                font-size: 0.7rem;
+            }
+
+        }
+
+        @media (max-width: 400px) {
+
+            .tut-card h1 {
+                font-size: 1.3rem;
+            }
+
+            .tut-card p,
+            .tut-steps p,
+            .tut-steps ol {
+                font-size: 0.8rem;
+                line-height: 1.1;
+            }
+
+            #qr-img {
+                transform: scale(30%);
+                left: -8.9rem;
+                top: 2.9rem;
+            }
+
+            .tut-steps {
+                padding: 0.8rem;
+                width: 20rem;
+            }
+
+            .note {
+                font-size: 0.65rem !important;
+            }
+        }
+
+
+    </style>
+    <div class="tut-card flex flex-col justify-center items-center mt-20 mb-10 p-4">
+        <img src="../static/images/qr-code.png" id="qr-img" alt="">
+        <h1 class="text-2xl italic font-medium bg-amber-100/40">how to generate a qr code</h1>
+        <p class="text-gray-500 italic mb-8 text-center ">
             follow this quick guide to turn your text into a scannable qr code.
         </p>
 
         <!-- 1 — #FED5FF (pink) -->
         <div class="relative p-6 rounded-2xl w-full max-w-2xl mb-6 text-center space-y-3
         bg-[#FED5FF] border border-[#EABBF0]
-        shadow-md shadow-pink-100">
+        shadow-md shadow-pink-100 tut-steps">
 
             <!-- soft glow overlay -->
             <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
@@ -38,7 +137,7 @@
                     go to
                     <a href="{{ url_for('qr_space') }}" class="underline text-blue-600 font-medium">qr code</a>.
                     you’ll see a simple text box where you can type anything you want to convert.
-                <p class="text-sm italic text-zinc-500 mt-3"> ⟶ note: a data information pop-up may appear,
+                <p class="text-sm italic text-zinc-500 mt-3 note"> <span id="card-arw">⟶</span> note: a data information pop-up may appear,
                     please read thoroughly , tick 'i agree' and confirm button before proceeding.</p>
                 </p>
 
@@ -56,7 +155,7 @@
         <div class="relative p-6 rounded-2xl
             border border-[#DDBDF2] shadow-md shadow-purple-100
              w-full max-w-2xl mb-6
-             text-center space-y-3 bg-[#E7C5FF]">
+             text-center space-y-3 bg-[#E7C5FF] tut-steps">
 
             <!-- soft glow overlay -->
             <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
@@ -74,15 +173,14 @@
                 <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
                     input your text</h2>
                 <p class="relative text-zinc-700 leading-relaxed">add the text you want to encode! this could be:</p>
-                <ol class="relative list-disc pl-40 text-left text-zinc-700">
+                <ol class="relative list-disc pl-[4rem] text-left text-zinc-700">
                     <li>a short message</li>
                     <li>a to-do list</li>
                     <li>a snippet of information</li>
                     <li>a study note</li>
                     <li>anything <span class="italic">safe</span> to be shared</li>
                 </ol>
-                <p class="relative mt-2 text-zinc-800 leading-relaxed italic text-sm">
-                    ⟶ note: <span class="font-semibold">do not enter personal or sensitive data! </span>
+                <p class="relative mt-2 text-zinc-800 leading-relaxed italic text-sm note"> <span id="card-arw">⟶</span> note: <span class="font-semibold">do not enter personal or sensitive data! </span>
                     — qr codes are <span class="underline">not</span> encrypted.
                 </p>
             </div>
@@ -98,7 +196,7 @@
         <div class="relative p-6 rounded-2xl border border-[#B6C6F2]
             shadow-md shadow-blue-100
             w-full max-w-2xl mb-4
-                text-center space-y-3 bg-[#BDCFFF]">
+                text-center space-y-3 bg-[#BDCFFF] tut-steps">
             <!-- soft glow overlay -->
             <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
 
@@ -129,7 +227,7 @@
         <!-- 4 —  neutral cream  -->
         <div class="relative p-6 border rounded-2xl border-cyan-200
         shadow-md shadow-cyan-100 w-full max-w-2xl mb-4
-                text-center space-y-3 bg-[#c8f4ff]">
+                text-center space-y-3 bg-[#c8f4ff] tut-steps">
             <!-- soft glow overlay -->
             <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
 
@@ -145,7 +243,7 @@
 
                 <h2 class="relative text-xl font-medium flex justify-center items-center gap-2">
                     wait for your qr to generate</h2>
-                <p class="relative text-zinc-700 leading-relaxed">(this should only take a moment!)</p>
+                <p class="relative text-zinc-700 leading-relaxed step4">(this should only take a moment!)</p>
             </div>
         </div>
 
@@ -157,7 +255,7 @@
 
         <!-- 5 —   -->
         <div class="relative p-6 border rounded-2xl border-[#C5F2D1] shadow-md shadow-green-100 w-full max-w-2xl mb-4
-                text-center space-y-3 bg-[#DFFFE9]">
+                text-center space-y-3 bg-[#DFFFE9] tut-steps">
             <!-- soft glow overlay -->
             <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
 
@@ -188,7 +286,7 @@
 
         <!-- 6 — NEW soft mint to break up purple/pinks -->
         <div class="relative p-6 rounded-2xl border border-amber-200 shadow-md shadow-yellow-50 w-full max-w-2xl mb-4
-                text-center space-y-3 bg-amber-100">
+                text-center space-y-3 bg-amber-100 tut-steps">
             <!-- soft glow overlay -->
             <div class="absolute inset-0 bg-white/30 pointer-events-none z-[1] overflow-hidden"></div>
 

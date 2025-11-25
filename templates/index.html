@@ -5,25 +5,63 @@
 
 {% block content %}
 
+    <style>
+        @media (max-width: 640px) {
+
+            /* shrink the cards a little */
+            .card {
+                width: 19rem;
+            }
+
+            /* card titles */
+            .card h1 {
+                font-size: 0.85rem;
+                line-height: 1;
+                margin-bottom: 0.5rem;
+            }
+
+            /* card paragraphs */
+            .card p {
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+
+            /* overall card padding on mobile */
+            .card .p-3 {
+                padding: 0.75rem;
+            }
+
+            /* reduce spacing between cards */
+            #main-content {
+                gap: 1.25rem;
+                margin-top: 2.5rem;
+            }
+
+            .home {
+                color:#ad46ff;
+            }
+        }
+    </style>
+
     <div class="home-body font-sans" id="home">
 
         <main class="mt-10 flex flex-col items-center justify-center w-full gap-6" id="main-content">
 
             <!-- card 1 -->
-            <div class="relative group max-w-sm w-full flex flex-col items-center">
+            <div class="relative group max-w-sm w-full flex flex-col items-center card" id="card1">
 
                 <div class="absolute -z-5 -bottom-1 left-2.5 w-[97%] h-5 bg-purple-200 rounded-lg
                         opacity-0 group-hover:opacity-100 transition-all duration-200"></div>
 
-                <div class="relative border border-gray-300 rounded-lg
-                        p-3 text-zinc-700 w-full shadow bg-gray-50
+                <div class="relative border border-gray-200 rounded-lg
+                        p-3 text-zinc-700 w-full shadow-sm bg-gray-50
                         transition-transform duration-200 group-hover:-translate-y-1">
 
                     <a href="{{ url_for('qr_space')}}" class="block text-left w-full">
-                        <h1 class="font-medium italic mb-1">generate qr code</h1>
-                        <p class="text-[14px] text-zinc-600">
+                        <h1 class="font-medium mb-1">generate qr code</h1>
+                        <p class="text-sm text-zinc-600">
                             <span class="text-violet-300">create</span> an easy scannable qr code.
-                            paste your text, and we'll turn it into a shareable image in seconds!
+                            paste your text, and we'll turn it into an image in seconds!
                         </p>
                     </a>
 
@@ -31,20 +69,20 @@
             </div>
 
             <!-- card 2 -->
-            <div class="relative group max-w-sm w-full flex flex-col items-center">
+            <div class="relative group max-w-sm w-full flex flex-col items-center card" id="card1">
 
                 <div class="absolute -z-5 -bottom-1 left-2.5 w-[97%] h-5 bg-violet-200 rounded-lg
                         opacity-0 group-hover:opacity-100 transition-all duration-200"></div>
 
-                <div class="relative border border-gray-300 rounded-lg
-                        p-3 text-zinc-700 w-full shadow bg-gray-50
+                <div class="relative border border-gray-200 rounded-lg
+                        p-3 text-zinc-700 w-full shadow-sm bg-gray-50
                         transition-transform duration-200 group-hover:-translate-y-1">
 
                     <a href="{{ url_for('tutorial')}}" class="block text-left w-full">
-                        <h1 class="font-medium italic mb-1">qr code tutorial</h1>
+                        <h1 class="font-medium  mb-1">qr code tutorial</h1>
                         <p class="text-[14px] text-zinc-600">
                             need some <span class="text-purple-300">guidance?</span>
-                            learn how to generate a fast, safe and easy qr code with a simple guide.
+                            learn how to generate a fast and easy qr code with a simple guide.
                         </p>
                     </a>
 

@@ -1,27 +1,99 @@
 <!-- ⭐ modal content ⭐ -->
+
+<style>
+    @media (max-width: 640px) {
+
+        /* modal box layout */
+        .modal-inner {
+            width: 92%;
+            padding: 1rem;
+            max-height: 88vh;
+            border-radius: 1rem;
+        }
+
+        /* scrollable content */
+        #modal-content {
+            max-height: 52vh;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 0.75rem;
+        }
+
+        /* stack section blocks vertically */
+        .modal-section {
+            flex-direction: column !important;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+            padding: 1.25rem;
+        }
+
+        /* shrink images */
+        .modal-section img {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto;
+            margin-top: 0.2rem;
+        }
+
+        /* fix section headings */
+        .modal-section h3 {
+            margin: 0.5rem 0;
+        }
+
+        /* remove desktop right gaps */
+        .modal-section .mr-20 {
+            margin-right: 0;
+        }
+
+        /* center link + checkbox group */
+        #info-button {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .modal-agree {
+            margin-top: 1rem;
+        }
+
+        /* button responsiveness */
+        #close-modal {
+            width: 65%;
+            height: 2.75rem;
+            margin-top: 1.25rem;
+            font-size: 0.95rem;
+        }
+    }
+</style>
+
+
+
+
 <div id="modal"
-     class="fixed inset-0 bg-black/5 backdrop-blur-sm flex justify-center text-sm items-center w-full h-full">
+     class="fixed inset-0 bg-black/10 backdrop-blur-sm flex justify-center items-center w-full h-full px-3 text-sm">
 
     <div class="modal-inner max-w-2xl w-[80%] max-h-[80vh] p-10 border border-gray-100 rounded-3xl bg-stone-100 shadow-xl overflow-hidden">
 
-        <h2 class="text-2xl mb-4 text-gray-800 text-center font-medium">
+        <!-- title -->
+        <h2 class="text-2xl mb-4 text-gray-800 text-center font-medium leading-tight">
             <span class="underline underline-offset-4 decoration-indigo-300">data</span> protection & user consent
         </h2>
 
-        <div class="scroll-box overflow-y-auto max-h-[40em] bg-white/90 border border-gray-300 rounded-lg p-6 mx-auto w-[90%]"
-             id="modal-content">
+        <!-- scrollable body -->
+        <div id="modal-content"
+             class="scroll-box overflow-y-auto max-h-[40em] bg-white/90 border border-gray-300 rounded-lg p-6 mx-auto w-[90%]">
 
-            <h2 class="text-center underline underline-offset-8 italic pb-3">
+            <h2 class="text-center underline underline-offset-8 italic pb-3 text-base">
                 please read our data policies and information!
             </h2>
 
-            <!-- modal section -->
 
-            <div class="bg-amber-50 p-6 mt-6 rounded-xl flex gap-6 items-start shadow mb-6">
-                <img class="mt-5 w-24 h-24 object-contain flex-shrink-0"
+            <!-- ⭐ section 1 -->
+            <div class="modal-section bg-amber-50 p-6 mt-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                <img class="w-24 h-24 object-contain flex-shrink-0"
                      src="../static/images/light-bulb.png" alt="">
                 <div class="flex flex-col">
-                    <h3 class="mr-20 text-lg mb-2">purpose</h3>
+                    <h3 class="mr-20 text-lg mb-2 font-medium">purpose</h3>
                     <p class="leading-relaxed">
                         the purpose of this tool is to process text input locally, and generate a qr code.
                         this tool follows guidelines to ensure data integrity.
@@ -29,12 +101,14 @@
                 </div>
             </div>
 
-            <div class="bg-red-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
-                <img class="mt-5 w-24 h-24 object-contain flex-shrink-0"
+
+            <!-- ⭐ section 2 -->
+            <div class="modal-section bg-red-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                <img class="w-24 h-24 object-contain flex-shrink-0"
                      src="../static/images/malware.png" alt="">
                 <div class="flex flex-col">
-                    <h3 class="mr-20 text-lg mb-2">safety warning</h3>
-                    <p class="leading-relaxed">this tool processes only the text you provide.</p>
+                    <h3 class="mr-20 text-lg mb-2 font-medium">safety warning</h3>
+                    <p class="leading-relaxed mb-2">this tool processes only the text you provide.</p>
                     <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
                         <li>do not enter sensitive personal data.</li>
                         <li>do not share qr codes containing private information.</li>
@@ -44,63 +118,75 @@
                 </div>
             </div>
 
-            <div class="bg-blue-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
-                <img class="mt-5 w-24 h-24 object-contain flex-shrink-0"
+
+            <!-- ⭐ section 3 -->
+            <div class="modal-section bg-blue-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                <img class="w-24 h-24 object-contain flex-shrink-0"
                      src="../static/images/computer.png" alt="">
                 <div class="flex flex-col">
-                    <h3 class="mr-20 text-lg mb-2">data storage</h3>
-                    <p>
+                    <h3 class="mr-20 text-lg mb-2 font-medium">data storage</h3>
+                    <p class="leading-relaxed space-y-1">
                         this tool processes data <span class="font-bold">locally</span> in your browser.<br>
-                        <span class="text-md">⟶ no text is uploaded, stored, logged, or transmitted to any server.</span><br>
-                        <span>⟶ once you close the page, your input is automatically cleared.</span><br>
+                        ⟶ no text is uploaded, stored, logged, or transmitted to any server.<br>
+                        ⟶ once you close the page, your input is automatically cleared.
                     </p>
                 </div>
             </div>
 
-            <div class="bg-green-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
-                <img class="mt-5 w-24 h-24 object-contain flex-shrink-0"
+
+            <!-- ⭐ section 4 -->
+            <div class="modal-section bg-green-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                <img class="w-24 h-24 object-contain flex-shrink-0"
                      src="../static/images/safety_padlock.png" alt="">
                 <div class="flex flex-col">
-                    <h3 class="mr-20 text-lg mb-2">keeping safe</h3>
+                    <h3 class="mr-20 text-lg mb-2 font-medium">keeping safe</h3>
                     <ul class="list-disc pl-5 space-y-2 text-sm">
                         <li>keep your generated qr images stored securely on your device.</li>
-                        <li>avoid posting qr codes publicly unless the encoded text is safe for anyone to read.</li>
+                        <li>avoid posting qr codes publicly.</li>
                         <li>delete older qr files if they are no longer needed.</li>
                         <li>only use this tool for appropriate academic or personal purposes.</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="bg-pink-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
-                <img class="mt-5 w-24 h-24 object-contain flex-shrink-0"
+
+            <!-- ⭐ section 5 -->
+            <div class="modal-section bg-pink-50 p-6 rounded-xl flex gap-6 items-start shadow mb-6">
+                <img class="w-24 h-24 object-contain flex-shrink-0"
                      src="../static/images/chat-bubble.png" alt="">
                 <div class="flex flex-col">
-                    <h3 class="mr-20 text-lg mb-2">resources</h3>
-                    <ul class="text-sm">
-                        <p class="text-sm text-gray-600"><i>know your rights:</i></p>
-                        <li>⟶ <a class="underline text-[#0000FF]" href="https://www.gov.uk/data-protection">uk gdpr</a></li>
-                        <li>⟶ <a class="underline text-[#0000FF]" href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted">data protection act</a></li>
-                        <p class="mt-2 text-sm text-gray-600"><i>learn more:</i></p>
-                        <li>⟶ <a class="underline text-[#0000FF]" href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online">nsc online safety tips</a></li>
+                    <h3 class="mr-20 text-lg mb-2 font-medium">resources</h3>
+                    <p class="text-sm text-gray-600 italic">know your rights:</p>
+                    <ul class="text-sm space-y-1">
+                        <li>⟶ <a class="underline text-blue-600" href="https://www.gov.uk/data-protection">uk gdpr</a></li>
+                        <li>⟶ <a class="underline text-blue-600" href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted">data protection act</a></li>
+                    </ul>
+                    <p class="text-sm text-gray-600 italic mt-2">learn more:</p>
+                    <ul class="text-sm space-y-1">
+                        <li>⟶ <a class="underline text-blue-600" href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online">nsc online safety tips</a></li>
                     </ul>
                 </div>
             </div>
 
-            <p class="text-sm text-gray-500">
+
+            <p class="text-sm text-gray-500 text-center mt-2">
                 <i>please ensure you have read the above information before proceeding.</i>
             </p>
 
         </div>
 
-        <a class="flex justify-center mt-2 underline text-[#0000FF]" href="data.html" id="info-button">
+        <!-- link -->
+        <a id="info-button" class="flex justify-center mt-3 underline text-blue-600" href="data.html">
             learn more about data protection
         </a>
 
+        <!-- checkbox -->
         <div class="modal-agree flex items-center gap-2 mt-4 justify-center">
             <input type="checkbox" id="modal-agree" disabled>
             <label for="modal-agree">i understand and agree!</label>
         </div>
 
+        <!-- errors -->
         <p id="scroll-error" class="text-red-700 text-sm text-center hidden">
             * please scroll down to continue.
         </p>
@@ -109,11 +195,13 @@
             * please scroll down and <span class="underline">tick the box</span> to continue.
         </p>
 
+        <!-- button -->
         <div class="flex justify-center items-center w-full">
             <button id="close-modal"
-                    class="btn-disabled items-center border bg-violet-100 border-violet-200 rounded-lg mt-3 h-[2.5em] w-[25%]">
+                    class="btn-disabled items-center border bg-violet-100 border-violet-200 rounded-lg mt-4 h-[2.5em] w-[25%]">
                 continue
             </button>
         </div>
+
     </div>
 </div>
